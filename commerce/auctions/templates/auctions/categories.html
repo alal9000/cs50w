@@ -1,0 +1,25 @@
+{% extends "auctions/listing.html" %}
+
+{% block body %}
+<h2>Categories</h2>
+
+<form action="{% url 'categories' %}" method="post">
+    {% csrf_token %}
+    <select name="categories">
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category }}</option>
+        {% endfor %}
+    </select>
+
+    <input type="submit" class="btn btn-primary">
+</form>
+
+<ul>
+    {% for auction in auctions %} 
+        <li><a href="{% url 'listing' auction.id %}" >{{ auction.title }}</a></li>  
+    {% empty %}
+        <li>No listings in this category</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
