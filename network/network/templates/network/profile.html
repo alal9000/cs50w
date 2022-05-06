@@ -1,0 +1,16 @@
+{% extends "network/layout.html" %}
+{% block body %}
+{% if user.is_authenticated %}
+    <button>Follow</button>
+{% endif %}
+{% for follower in followers %}
+    <li><strong>Followers:</strong> {{follower.followers}}</li>
+    <li><strong>Following:</strong> {{follower.following}}</li>
+{% endfor %}
+<ul>
+{% for post in posts %}
+    <li>{{post.post}}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

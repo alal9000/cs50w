@@ -1,0 +1,15 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<h1>All Posts</h1>
+<form method="post" action="{% url 'allposts' %}">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Post">
+</form>
+<ul>
+{% for post in posts %}
+    <li><a href="{% url 'profile' post.username_id %}">-{{post.username}} Posted: </a>{{post.post}} <em>{{post.date}}</em><strong>Likes:{{post.likes}}</strong></li>
+{% endfor %}
+</ul>
+{% endblock %}
